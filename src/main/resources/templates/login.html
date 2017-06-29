@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>登录</title>
+
+</head>
+<body>
+    用户名:<input id="user_name" type="text" placeholder="用户名" /><br><br>
+    密码:<input id="user_password" type="password" placeholder="请输入密码" >
+    <input id="loginButton" type="button" value="提交" />
+</body>
+
+<script src="../js/jquery-3.2.1.js"></script>
+
+<script th:inline="javascript">
+    $(function () {
+        $("#loginButton").click(function () {
+            var user_name = $("#user_name").val();
+            var user_password = $("#user_password").val();
+            var _data ={}
+                _data.user_name = user_name;
+                _data.user_password = user_password;
+            $.ajax({
+                url:'/user/checkLogin',
+                type:'post',
+                data:JSON.stringify(_data),
+                contentType:'application/json',
+                success:function (data) {
+                    if(data.success){
+                        location.href="/index"
+                    }else {
+                        alert(data.msg);
+                    }
+                }
+            })
+        })
+    })
+</script>
+</html>
