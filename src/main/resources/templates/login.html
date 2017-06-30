@@ -1,26 +1,119 @@
 <!DOCTYPE html>
 <html lang="zh" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8"/>
-    <title>登录</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Custom Login Form Styling with CSS3" />
+    <meta name="keywords" content="css3, login, form, custom, input, submit, button, html5, placeholder" />
+    <meta name="author" content="Codrops" />
+
+    <title>登陆</title>
+
+    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="../bootstrap-3.3.7/css/bootstrap.css">
+    <link rel="stylesheet" href="../bootstrap-3.3.7/css/bootstrap-theme.css">
+
+    <!--[if lte IE 7]><style>.main{display:none;} .support-note .note-ie{display:block;}</style><![endif]-->
+    <style>
+        @import url(http://fonts.googleapis.com/css?family=Montserrat:400,700|Handlee);
+        body {
+            background: #eedfcc url(../images/bg3.jpg) no-repeat center top;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            background-size: cover;
+        }
+        .container > header h1,
+        .container > header h2 {
+            color: #fff;
+            text-shadow: 0 1px 1px rgba(0,0,0,0.5);
+        }
+    </style>
 
 </head>
 <body>
-    用户名:<input id="user_name" type="text" placeholder="用户名" /><br><br>
-    密码:<input id="user_password" type="password" placeholder="请输入密码" >
-    <input id="loginButton" type="button" value="提交" />
-</body>
 
+<div class="container" style="margin-top: 10%">
+
+    <header>
+        <h1><strong>欢迎回来</strong></h1>
+        <h2>一次骑行，一次挑战，一次提升，一次回忆...</h2>
+    </header>
+
+    <section class="main">
+        <form class="form-5 clearfix">
+            <p>
+                <input type="text" id="user_name" name="user_name" placeholder="用户名">
+                <input type="password" id="user_password" name="user_password" placeholder="密码">
+            </p>
+            <button type="button" id="loginButton" >
+                <i class="icon-arrow-right"></i>
+                <span>Sign in</span>
+            </button><br>
+            <span id="pwdMsg"></span>
+        </form>​​​​
+    </section>
+
+</div>
+
+<!-- 模态框 -->
+<div class="modal fade" id="loginModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width: 300px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Sorry</h4>
+            </div>
+
+            <div class="modal-body">
+                <span style="color: red">用户名或密码错误，请检查后重新输入</span>
+                <span id="register_sen" style="color: red"></span>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">返回</button>
+                <!--<button type="button" id="updata_community" class="btn btn-primary">保存</button>-->
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+<!-- jQuery if needed -->
 <script src="../js/jquery-3.2.1.js"></script>
+<script src="../js/modernizr.custom.63321.js"></script>
+<script src="../js/jquery.placeholder.min.js"></script>
+<script src="../bootstrap-3.3.7/js/bootstrap.js"></script>
+
+<script type="text/javascript">
+    $(function(){
+        $('input, textarea').placeholder();
+    });
+</script>
 
 <script th:inline="javascript">
     $(function () {
+        /* 验证密码长度 */
+        $("#user_password").blur(function () {
+           var user_pwd = $("#user_password").val().length;
+           if( user_pwd >=0 && user_pwd <6 ){
+                $("#pwdMsg").show().html("密码不能少于6位").css({"color":"red","float":"left"});
+//                $("#loginButton").attr({"disabled":"disabled"});
+           }
+           if(user_pwd>=6){
+               $("#pwdMsg").hide();
+//               $("#loginButton").removeAttr("disabled");
+           }
+        });
+
         $("#loginButton").click(function () {
+
             var user_name = $("#user_name").val();
             var user_password = $("#user_password").val();
             var _data ={}
-                _data.user_name = user_name;
-                _data.user_password = user_password;
+            _data.user_name = user_name;
+            _data.user_password = user_password;
             $.ajax({
                 url:'/user/checkLogin',
                 type:'post',
@@ -30,11 +123,30 @@
                     if(data.success){
                         location.href="/index"
                     }else {
-                        alert(data.msg);
+                        $("#loginModel").modal();
+                        sumitTime(this);
                     }
                 }
             })
         })
+
+        /*模态框倒计时跳转*/
+        var countdownT = 5;
+        function sumitTime(val) {
+            $("#register_sen").html("("+countdownT+")");
+            countdownT--;
+            if(countdownT== -1){
+                $("#loginModel").modal('hide');
+//                location.href="/index";
+                countdownT = 5;
+                return ;
+            }
+            setTimeout(function() {
+                sumitTime(val)
+            }, 1000);
+        };
     })
 </script>
+
+</body>
 </html>

@@ -31,7 +31,6 @@ public class UserController {
         String user_name = user.getUser_name();
         String user_password = user.getUser_password();
         User login = userService.login(user_name, user_password);
-        System.out.println(login);
         if(null != login){
             modelMap.put(UserContext.USER_IN_SESSION,login);
             json.setSuccess(true).setMsg("登陆成功!");

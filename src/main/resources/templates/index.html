@@ -1,10 +1,266 @@
 <!DOCTYPE html>
 <html lang="zh" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8"/>
-    <title>测试</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>主页</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Free HTML5 Website Template by FreeHTML5.co" />
+    <meta name="keywords" content="free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
+
+    <!-- Facebook and Twitter integration -->
+    <meta property="og:title" content=""/>
+    <meta property="og:image" content=""/>
+    <meta property="og:url" content=""/>
+    <meta property="og:site_name" content=""/>
+    <meta property="og:description" content=""/>
+    <meta name="twitter:title" content="" />
+    <meta name="twitter:image" content="" />
+    <meta name="twitter:url" content="" />
+    <meta name="twitter:card" content="" />
+
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <link rel="shortcut icon" href="favicon.ico">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="../css/animate.css">
+    <!-- Icomoon Icon Fonts-->
+    <link rel="stylesheet" href="../css/icomoon.css">
+    <!-- Bootstrap  -->
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <!--<link rel="stylesheet" href="../bootstrap-3.3.7/css/bootstrap-theme.css">-->
+    <!-- Owl Carousel -->
+    <link rel="stylesheet" href="../css/owl.carousel.min.css">
+    <link rel="stylesheet" href="../css/owl.theme.default.min.css">
+    <!-- Theme style  -->
+    <link rel="stylesheet" href="../css/index.css">index
+
+    <!-- Modernizr JS -->
+    <script src="../js/modernizr-2.6.2.min.js"></script>
+
+    <!-- FOR IE9 below -->
+    <!--[if lt IE 9]>
+    <script src="../js/respond.min.js"></script>
+    <![endif]-->
+<style type="text/css">
+    /* 去除div滚动条 */
+    #fh5co-aside{
+        overflow: hidden;
+    }
+</style>
+
 </head>
 <body>
-    zhuye
+<!-- div距离顶部有32px宽度，暂时解决 -->
+<div id="fh5co-page" style="margin-top: -30px">
+    <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
+    <!-- 左边导航栏 -->
+    <aside id="fh5co-aside" role="complementary" class="border js-fullheight">
+
+        <h1 id="fh5co-logo"><a href="index.html"><img src="../images/logo-colored.png" alt="Free HTML5 Bootstrap Website Template"></a></h1>
+        <nav id="fh5co-main-menu" role="navigation">
+            <ul>
+                <li class="fh5co-active"><a href="#">首页</a></li>
+                <li><a href="#">图片</a></li>
+                <li><a href="#">关于</a></li>
+                <li><a href="#">联系</a></li>
+            </ul>
+        </nav>
+
+        <!-- 右边底部 -->
+        <div class="fh5co-footer">
+            <p><small>&copy; 2017 Blend Free HTML5. All Rights Reserved.</span> More Templates <a href="#" target="_blank" title="首页">首页</a> - Collect from <a href="#" title="首页" target="_blank">首页</a></small></p>
+            <ul>
+                <li><a href="#"><i class="icon-facebook"></i></a></li>
+                <li><a href="#"><i class="icon-twitter"></i></a></li>
+                <li><a href="#"><i class="icon-instagram"></i></a></li>
+                <li><a href="#"><i class="icon-linkedin"></i></a></li>
+            </ul>
+        </div>
+
+    </aside>
+
+    <div id="fh5co-main">
+        <div class="fh5co-gallery">
+
+            <a class="gallery-item" href="#">
+                <img src="../image/work_1.jpg" alt="Free HTML5 Bootstrap Template by FreeHTML5.co">
+                <span class="overlay">
+						<h2>Nature</h2>
+						<span>14 Photos</span>
+					</span>
+            </a>
+            <a class="gallery-item" href="#">
+                <img src="../image/work_2.jpg" alt="Free HTML5 Bootstrap Template by FreeHTML5.co">
+                <span class="overlay">
+						<h2>People</h2>
+						<span>7 Photos</span>
+					</span>
+            </a>
+            <a class="gallery-item" href="#">
+                <img src="../image/work_3.jpg" alt="Free HTML5 Bootstrap Template by FreeHTML5.co">
+                <span class="overlay">
+						<h2>Sky</h2>
+						<span>22 Photos</span>
+					</span>
+            </a>
+            <a class="gallery-item" href="#">
+                <img src="../image/work_4.jpg" alt="Free HTML5 Bootstrap Template by FreeHTML5.co">
+                <span class="overlay">
+						<h2>Building</h2>
+						<span>28 Photos</span>
+					</span>
+            </a>
+
+        </div>
+
+
+
+        <div class="fh5co-narrow-content">
+            <h2 class="fh5co-heading animate-box" data-animate-effect="fadeInLeft">骑行是一种乐趣</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="fh5co-feature animate-box" data-animate-effect="fadeInLeft">
+                        <div class="fh5co-icon">
+                            <i class="icon-strategy"></i>
+                        </div>
+                        <div class="fh5co-text">
+                            <h3>MERIDA</h3>
+                            <p>
+                                美利达集团于1972年创立，至今已40余年，于全国各主要城市设立的销售分公司均由美利达自行车（中国）有限公司100%投资设立，并于2000年9月成立
+                                内销总部，深入了解市场与消费者需求，完善产品结构与销售体系管理，为客户与终端消费者提供最优质的服务。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="fh5co-feature animate-box" data-animate-effect="fadeInLeft">
+                        <div class="fh5co-icon">
+                            <i class="icon-telescope"></i>
+                        </div>
+                        <div class="fh5co-text">
+                            <h3>GIANT</h3>
+                            <p>
+                                捷安特为提供高质量自行车的专业领导品牌,自1972年成立以来,致力于提倡自行车文化和运动。今日的Giant结合了创新技术以及制造专业,并以”启动探索
+                                的热情”为品牌精神，将先进的生产技术、管理模式以及行销全球的成功理念，精心打造每一个零部件，并使得每一个消费者都能够感受到我们的人性服务。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="fh5co-feature animate-box" data-animate-effect="fadeInLeft">
+                        <div class="fh5co-icon">
+                            <i class="icon-circle-compass"></i>
+                        </div>
+                        <div class="fh5co-text">
+                            <h3>XDS</h3>
+                            <p>
+                                深圳市喜德盛自行车有限公司创建于1995年，是一家集设计、开发、生产、销售于一体的大型自行车及电动车企业，公司特别注重产品的研发和创新，庞大
+                                的研发团队专业致力于基础结构设计和产品应用设计，每年都推出一大批具有创新性、时尚和引领潮流的产品。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="fh5co-feature animate-box" data-animate-effect="fadeInLeft">
+                        <div class="fh5co-icon">
+                            <i class="icon-tools-2"></i>
+                        </div>
+                        <div class="fh5co-text">
+                            <h3>more chose</h3>
+                            <p>
+                                深圳市喜德盛自行车有限公司创建于1995年，是一家集设计、开发、生产、销售于一体的大型自行车及电动车企业，公司特别注重产品的研发和创新，庞大
+                                的研发团队专业致力于基础结构设计和产品应用设计，每年都推出一大批具有创新性、时尚和引领潮流的产品。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="fh5co-testimonial" >
+            <div class="fh5co-narrow-content">
+                <div class="owl-carousel-fullwidth animate-box" data-animate-effect="fadeInLeft">
+                    <div class="item">
+                        <figure>
+                            <img src="../image/testimonial_person2.jpg" alt="Free HTML5 Bootstrap Template">
+                        </figure>
+                        <p class="text-center quote">&ldquo;Design must be functional and functionality must be translated into visual aesthetics, without any reliance on gimmicks that have to be explained. &rdquo; <cite class="author">&mdash; Ferdinand A. Porsche</cite></p>
+                    </div>
+                    <div class="item">
+                        <figure>
+                            <img src="../image/testimonial_person3.jpg" alt="Free HTML5 Bootstrap Template">
+                        </figure>
+                        <p class="text-center quote">&ldquo;Creativity is just connecting things. When you ask creative people how they did something, they feel a little guilty because they didn’t really do it, they just saw something. It seemed obvious to them after a while. &rdquo;<cite class="author">&mdash; Steve Jobs</cite></p>
+                    </div>
+                    <div class="item">
+                        <figure>
+                            <img src="../image/testimonial_person4.jpg" alt="Free HTML5 Bootstrap Template">
+                        </figure>
+                        <p class="text-center quote">&ldquo;I think design would be better if designers were much more skeptical about its applications. If you believe in the potency of your craft, where you choose to dole it out is not something to take lightly. &rdquo;<cite class="author">&mdash; Frank Chimero</cite></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="fh5co-counters" style="background-image: url(../images/hero.jpg);" data-stellar-background-ratio="0.5" id="counter-animate">
+            <div class="fh5co-narrow-content animate-box">
+                <div class="row" >
+                    <div class="col-md-4 text-center">
+                        <span class="fh5co-counter js-counter" data-from="0" data-to="67" data-speed="5000" data-refresh-interval="50"></span>
+                        <span class="fh5co-counter-label">Client</span>
+                    </div>
+                    <div class="col-md-4 text-center">
+                        <span class="fh5co-counter js-counter" data-from="0" data-to="130" data-speed="5000" data-refresh-interval="50"></span>
+                        <span class="fh5co-counter-label">Photos</span>
+                    </div>
+                    <div class="col-md-4 text-center">
+                        <span class="fh5co-counter js-counter" data-from="0" data-to="27232" data-speed="5000" data-refresh-interval="50"></span>
+                        <span class="fh5co-counter-label">Pixels</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="fh5co-narrow-content">
+            <div class="row">
+                <div class="col-md-4 animate-box" data-animate-effect="fadeInLeft">
+                    <h1 class="fh5co-heading-colored">Get in touch</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 animate-box" data-animate-effect="fadeInLeft">
+                    <p class="fh5co-lead">Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+                    <p><a href="#" class="btn btn-primary btn-outline">Learn More</a></p>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- jQuery -->
+<script src="../js/jquery.min.js"></script>
+<!-- jQuery Easing -->
+<script src="../js/jquery.easing.1.3.js"></script>
+<!-- Bootstrap -->
+<script src="../js/bootstrap.min.js"></script>
+<!-- Carousel -->
+<script src="../js/owl.carousel.min.js"></script>
+<!-- Stellar -->
+<script src="../js/jquery.stellar.min.js"></script>
+<!-- Waypoints -->
+<script src="../js/jquery.waypoints.min.js"></script>
+<!-- Counters -->
+<script src="../js/jquery.countTo.js"></script>
+<!-- MAIN JS -->
+<script src="../js/main.js"></script>
+
 </body>
 </html>
+
