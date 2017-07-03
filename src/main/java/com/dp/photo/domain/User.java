@@ -18,6 +18,7 @@ public class User {
     private String user_password;
     private String user_tel;
     private String user_address;
+    private String user_img;
     private Date user_createTime;
     private Date user_updateTime;
 }

@@ -10,6 +10,7 @@
         <result column="user_password" property="user_password" />
         <result column="user_tel" property="user_tel" />
         <result column="user_address" property="user_address" />
+        <result column="user_img" property="user_img"/>
         <result column="user_createTime" property="user_createTime" />
         <result column="user_updateTime" property="user_updateTime" />
     </resultMap>
@@ -27,21 +28,19 @@
     </delete>
 
     <insert id="save" parameterType="user" useGeneratedKeys="true" keyProperty="id" >
-        INSERT INTO t_user (user_name,user_password,user_tel,user_address,user_createTime,user_updateTime)
+        INSERT INTO t_user (user_name,user_password,user_tel,user_address,user_img,user_createTime,user_updateTime)
         VALUES
-        (#{user_name},#{user_password},#{user_tel},#{user_address},#{user_createTime},#{user_updateTime});
+        (#{user_name},#{user_password},#{user_tel},#{user_address},#(user_img),#{user_createTime},#{user_updateTime});
     </insert>
 
     <update id="update" parameterType="user" >
         update t_user SET
-          user_name=#{user_name},user_password=#{user_password},user_tel=#{user_tel},user_address=#{user_address},user_createTime=#{user_createTime},user_updateTime=#{user_updateTime}}
+          user_name=#{user_name},user_password=#{user_password},user_tel=#{user_tel},user_address=#{user_address},user_img=#{user_img},user_createTime=#{user_createTime},user_updateTime=#{user_updateTime}}
         WHERE id=#{id};
     </update>
-
 
     <select id="findByUserName" parameterType="String" resultMap="userMap" >
         SELECT * FROM t_user WHERE user_name=#{user_name};
     </select>
-
 
 </mapper>

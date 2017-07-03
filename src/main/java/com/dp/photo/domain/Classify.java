@@ -17,7 +17,9 @@ public class Classify {
     private Integer id;
     private String classify_name;
     private String classify_describe;
+    private String classify_coverImg;
     private Date classify_createTime;
     private Date classify_updateTime;
+    private Integer user_id;
 
 }

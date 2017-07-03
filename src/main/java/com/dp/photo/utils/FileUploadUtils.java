@@ -23,9 +23,9 @@ public class FileUploadUtils extends HttpServlet{
 
     public static final String SESSION_TOKEN = "tokenInSession";
 
-    public static final String ACCESS_KEY = "GtcOh5eTSypJJBA-gfgh676hOkSssjlDzyS4H_cg";//这里填上面我们讲到的，密钥管理里面的密钥
-    public static final String SECRET_KEY = "B50EI3UDK4IwWBpoxeG34GlebQphohb2P3D3vDOK";
-    public static final String BUCKET_NAME = "";//填我们在七牛云创建的 Bucket 名字
+    public static final String ACCESS_KEY = "jFF4Tp5JL1p3J-HyaSDNHCyO9vwDR9RrSVqWiiVm";//这里填上面我们讲到的，密钥管理里面的密钥
+    public static final String SECRET_KEY = "Y0-kTJ7Kq9_xQfJseLjvx2zJtzLUOdWWo-nJqJ1q";
+    public static final String BUCKET_NAME = "dp9212";//填我们在七牛云创建的 Bucket 名字
 
     /* 首页轮播上传 */
     public static final  String getWebUptoken() {

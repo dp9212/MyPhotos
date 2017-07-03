@@ -3581,7 +3581,7 @@ tbody.collapse.in {
 
 .navbar {
   position: relative;
-  min-height: 55px;
+  min-height: 55px;  /* 这里改变导航栏高度 原值55 */
   margin-bottom: 20px;
   border: 1px solid transparent;
 }

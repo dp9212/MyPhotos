@@ -1,13 +1,10 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" class="no-js">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>主页</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Free HTML5 Website Template by FreeHTML5.co" />
-    <meta name="keywords" content="free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
-
     <!-- Facebook and Twitter integration -->
     <meta property="og:title" content=""/>
     <meta property="og:image" content=""/>
@@ -19,22 +16,17 @@
     <meta name="twitter:url" content="" />
     <meta name="twitter:card" content="" />
 
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <link rel="shortcut icon" href="favicon.ico">
-    <!-- Animate.css -->
     <link rel="stylesheet" href="../css/animate.css">
-    <!-- Icomoon Icon Fonts-->
     <link rel="stylesheet" href="../css/icomoon.css">
-    <!-- Bootstrap  -->
     <link rel="stylesheet" href="../css/bootstrap.css">
-    <!--<link rel="stylesheet" href="../bootstrap-3.3.7/css/bootstrap-theme.css">-->
-    <!-- Owl Carousel -->
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/ace.min.css">
+    <link rel="stylesheet" href="../css/ace-skins.min.css">
     <link rel="stylesheet" href="../css/owl.carousel.min.css">
     <link rel="stylesheet" href="../css/owl.theme.default.min.css">
-    <!-- Theme style  -->
-    <link rel="stylesheet" href="../css/index.css">index
+    <link rel="stylesheet" href="../css/style.css">
 
-    <!-- Modernizr JS -->
     <script src="../js/modernizr-2.6.2.min.js"></script>
 
     <!-- FOR IE9 below -->
@@ -46,12 +38,213 @@
     #fh5co-aside{
         overflow: hidden;
     }
+    /* 顶部导航栏 */
+    .navbar{
+        background-color: #E6E6E6;
+        width: 100%;
+        height: 32px;
+        position:fixed;
+        /*margin-top: -32px;*/
+        z-index:999; /* 让DIV显示最上层，数值越大，越在上 */
+    }
+    .user-info{
+        font-size: small;
+    }
 </style>
+
 
 </head>
 <body>
-<!-- div距离顶部有32px宽度，暂时解决 -->
-<div id="fh5co-page" style="margin-top: -30px">
+
+<div id="fh5co-page">
+    <!-- 顶部导航栏 -->
+    <div class="navbar navbar-default" id="navbar">
+            <!-- 右边下拉选择框 -->
+            <div class="navbar-header pull-right" role="navigation">
+                <ul class="nav ace-nav">
+
+                    <!-- 第一个下拉框 -->
+                    <li class="purple">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <i class="icon-bell-alt icon-animated-bell"></i>
+                            <span class="badge badge-important">8</span>
+                        </a>
+
+                        <ul class="pull-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
+                            <li class="dropdown-header">
+                                <i class="icon-warning-sign"></i>
+                                8条通知
+                            </li>
+
+                            <li>
+                                <a href="#">
+                                    <div class="clearfix">
+											<span class="pull-left">
+												<i class="btn btn-xs no-hover btn-pink icon-comment"></i>
+												新闻评论
+											</span>
+                                        <span class="pull-right badge badge-info">+12</span>
+                                    </div>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#">
+                                    <i class="btn btn-xs btn-primary icon-user"></i>
+                                    切换为编辑登录..
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#">
+                                    <div class="clearfix">
+											<span class="pull-left">
+												<i class="btn btn-xs no-hover btn-success icon-shopping-cart"></i>
+												新订单
+											</span>
+                                        <span class="pull-right badge badge-success">+8</span>
+                                    </div>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#">
+                                    <div class="clearfix">
+											<span class="pull-left">
+												<i class="btn btn-xs no-hover btn-info icon-twitter"></i>
+												粉丝
+											</span>
+                                        <span class="pull-right badge badge-info">+11</span>
+                                    </div>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#">
+                                    查看所有通知
+                                    <i class="icon-arrow-right"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <!-- 第二个下拉框 -->
+                    <li class="green">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <i class="icon-envelope icon-animated-vertical"></i>
+                            <span class="badge badge-success">5</span>
+                        </a>
+                        <ul class="pull-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
+                            <li class="dropdown-header">
+                                <i class="icon-envelope-alt"></i>
+                                5条消息
+                            </li>
+
+                            <li>
+                                <a href="#">
+                                    <img src="../images/avatar.png" class="msg-photo" alt="Alex's Avatar" />
+                                    <span class="msg-body">
+											<span class="msg-title">
+												<span class="blue">Alex:</span>
+												不知道写啥 ...
+											</span>
+
+											<span class="msg-time">
+												<i class="icon-time"></i>
+												<span>1分钟以前</span>
+											</span>
+										</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#">
+                                    <img src="../images/avatar3.png" class="msg-photo" alt="Susan's Avatar" />
+                                    <span class="msg-body">
+											<span class="msg-title">
+												<span class="blue">Susan:</span>
+												不知道翻译...
+											</span>
+
+											<span class="msg-time">
+												<i class="icon-time"></i>
+												<span>20分钟以前</span>
+											</span>
+										</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#">
+                                    <img src="../images/avatar4.png" class="msg-photo" alt="Bob's Avatar" />
+                                    <span class="msg-body">
+											<span class="msg-title">
+												<span class="blue">Bob:</span>
+												到底是不是英文 ...
+											</span>
+
+											<span class="msg-time">
+												<i class="icon-time"></i>
+												<span>下午3:15</span>
+											</span>
+										</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="inbox.html">
+                                    查看所有消息
+                                    <i class="icon-arrow-right"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <!-- 第三个下拉框(登陆状态) -->
+                    <li class="light-blue">
+                        <a data-toggle="dropdown" href="#" class="dropdown-toggle">
+                            <img class="nav-user-photo" src="../images/user.jpg" alt="Jason's Photo" />
+                            <span class="user-info">
+                            <small>欢迎,</small>
+                            <span th:text="${session.USER_IN_SESSION !=null ? session.USER_IN_SESSION.user_name :'游客' }"></span>
+                        </span>
+
+                            <i class="icon-caret-down"></i>
+                        </a>
+
+                        <ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+                            <li>
+                                <a href="#">
+                                    <i class="icon-cog"></i>
+                                    设置
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#">
+                                    <i class="icon-user"></i>
+                                    个人资料
+                                </a>
+                            </li>
+
+                            <li class="divider"></li>
+
+                            <li>
+                                <a href="/user/logout">
+                                    <i class="icon-off"></i>
+                                    退出
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul><!-- /.ace-nav -->
+            </div><!-- /.navbar-header -->
+        </div><!-- /.container -->
+    </div>
+
+
+    <!-- 主体 -->
     <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
     <!-- 左边导航栏 -->
     <aside id="fh5co-aside" role="complementary" class="border js-fullheight">
@@ -59,10 +252,10 @@
         <h1 id="fh5co-logo"><a href="index.html"><img src="../images/logo-colored.png" alt="Free HTML5 Bootstrap Website Template"></a></h1>
         <nav id="fh5co-main-menu" role="navigation">
             <ul>
-                <li class="fh5co-active"><a href="#">首页</a></li>
-                <li><a href="#">图片</a></li>
+                <li class="fh5co-active"><a href="/index">首页</a></li>
+                <li><a href="#">相册</a></li>
+                <li><a href="/photo">图片上传</a></li>
                 <li><a href="#">关于</a></li>
-                <li><a href="#">联系</a></li>
             </ul>
         </nav>
 
@@ -79,32 +272,33 @@
 
     </aside>
 
+    <!-- 右侧顶部图片 -->
     <div id="fh5co-main">
         <div class="fh5co-gallery">
 
             <a class="gallery-item" href="#">
-                <img src="../image/work_1.jpg" alt="Free HTML5 Bootstrap Template by FreeHTML5.co">
+                <img src="../image/work_1.jpg" alt="1">
                 <span class="overlay">
 						<h2>Nature</h2>
 						<span>14 Photos</span>
 					</span>
             </a>
             <a class="gallery-item" href="#">
-                <img src="../image/work_2.jpg" alt="Free HTML5 Bootstrap Template by FreeHTML5.co">
+                <img src="../image/work_2.jpg" alt="2">
                 <span class="overlay">
 						<h2>People</h2>
 						<span>7 Photos</span>
 					</span>
             </a>
             <a class="gallery-item" href="#">
-                <img src="../image/work_3.jpg" alt="Free HTML5 Bootstrap Template by FreeHTML5.co">
+                <img src="../image/work_3.jpg" alt="3">
                 <span class="overlay">
 						<h2>Sky</h2>
 						<span>22 Photos</span>
 					</span>
             </a>
             <a class="gallery-item" href="#">
-                <img src="../image/work_4.jpg" alt="Free HTML5 Bootstrap Template by FreeHTML5.co">
+                <img src="../image/work_4.jpg" alt="4">
                 <span class="overlay">
 						<h2>Building</h2>
 						<span>28 Photos</span>
