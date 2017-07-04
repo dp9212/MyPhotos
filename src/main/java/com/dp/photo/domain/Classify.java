@@ -16,7 +16,7 @@ import java.util.Date;
 public class Classify {
     private Integer id;
     private String classify_name;
-    private String classify_describe;
+    private String classify_describe; /* 长度150 */
     private String classify_coverImg;
     private Date classify_createTime;
     private Date classify_updateTime;

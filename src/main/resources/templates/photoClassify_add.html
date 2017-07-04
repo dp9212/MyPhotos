@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" class="no-js">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>图片上传</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Facebook and Twitter integration -->
+    <meta property="og:title" content=""/>
+    <meta property="og:image" content=""/>
+    <meta property="og:url" content=""/>
+    <meta property="og:site_name" content=""/>
+    <meta property="og:description" content=""/>
+    <meta name="twitter:title" content=""/>
+    <meta name="twitter:image" content=""/>
+    <meta name="twitter:url" content=""/>
+    <meta name="twitter:card" content=""/>
+
+    <link rel="stylesheet" href="../css/animate.css">
+    <link rel="stylesheet" href="../css/icomoon.css">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/ace.min.css">
+    <link rel="stylesheet" href="../css/ace-skins.min.css">
+    <link rel="stylesheet" href="../css/owl.carousel.min.css">
+    <link rel="stylesheet" href="../css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+
+    <script src="../js/modernizr-2.6.2.min.js"></script>
+
+    <!-- FOR IE9 below -->
+    <!--[if lt IE 9]>
+    <script src="../js/respond.min.js"></script>
+    <![endif]-->
+
+    <style type="text/css">
+        /* 去除div滚动条 */
+        #fh5co-aside {
+            overflow: hidden;
+        }
+
+        /* 顶部导航栏 */
+        .navbar {
+            background-color: #E6E6E6;
+            width: 100%;
+            height: 32px;
+            position: fixed;
+            /*margin-top: -32px;*/
+            z-index: 999; /* 让DIV显示最上层，数值越大，越在上 */
+        }
+
+        .user-info {
+            font-size: small;
+        }
+
+        textarea {
+            overflow: auto;
+            border: none;
+            resize: none;
+        }
+
+        .btn {
+            width: 100%;
+        }
+        #choseFileName{
+            readonly:true;
+            border: 0px;
+            background-color:#E6E6E6;
+        }
+        #upLoadMsg{
+            font-family: Arial;
+            font-size: small;
+        }
+    </style>
+
+</head>
+<body>
+
+<!-- 顶部导航 -->
+<div class="navbar navbar-default" id="navbar">
+    <!-- 顶部右边下拉选择框 -->
+    <div class="navbar-header pull-right" role="navigation">
+        <ul class="nav ace-nav">
+
+            <!-- 第一个下拉框 -->
+            <li class="purple">
+                <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                    <i class="icon-bell-alt icon-animated-bell"></i>
+                    <span class="badge badge-important">8</span>
+                </a>
+
+                <ul class="pull-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
+                    <li class="dropdown-header">
+                        <i class="icon-warning-sign"></i>
+                        8条通知
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            <div class="clearfix">
+												<span class="pull-left">
+													<i class="btn btn-xs no-hover btn-pink icon-comment"></i>
+													新闻评论
+												</span>
+                                <span class="pull-right badge badge-info">+12</span>
+                            </div>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            <i class="btn btn-xs btn-primary icon-user"></i>
+                            切换为编辑登录..
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            <div class="clearfix">
+												<span class="pull-left">
+													<i class="btn btn-xs no-hover btn-success icon-shopping-cart"></i>
+													新订单
+												</span>
+                                <span class="pull-right badge badge-success">+8</span>
+                            </div>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            <div class="clearfix">
+												<span class="pull-left">
+													<i class="btn btn-xs no-hover btn-info icon-twitter"></i>
+													粉丝
+												</span>
+                                <span class="pull-right badge badge-info">+11</span>
+                            </div>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            查看所有通知
+                            <i class="icon-arrow-right"></i>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <!-- 第二个下拉框 -->
+            <li class="green">
+                <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                    <i class="icon-envelope icon-animated-vertical"></i>
+                    <span class="badge badge-success">5</span>
+                </a>
+                <ul class="pull-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
+                    <li class="dropdown-header">
+                        <i class="icon-envelope-alt"></i>
+                        5条消息
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            <img src="../images/avatar.png" class="msg-photo" alt="Alex's Avatar"/>
+                            <span class="msg-body">
+												<span class="msg-title">
+													<span class="blue">Alex:</span>
+													不知道写啥 ...
+												</span>
+
+												<span class="msg-time">
+													<i class="icon-time"></i>
+													<span>1分钟以前</span>
+												</span>
+											</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            <img src="../images/avatar3.png" class="msg-photo" alt="Susan's Avatar"/>
+                            <span class="msg-body">
+												<span class="msg-title">
+													<span class="blue">Susan:</span>
+													不知道翻译...
+												</span>
+
+												<span class="msg-time">
+													<i class="icon-time"></i>
+													<span>20分钟以前</span>
+												</span>
+											</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            <img src="../images/avatar4.png" class="msg-photo" alt="Bob's Avatar"/>
+                            <span class="msg-body">
+												<span class="msg-title">
+													<span class="blue">Bob:</span>
+													到底是不是英文 ...
+												</span>
+
+												<span class="msg-time">
+													<i class="icon-time"></i>
+													<span>下午3:15</span>
+												</span>
+											</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="inbox.html">
+                            查看所有消息
+                            <i class="icon-arrow-right"></i>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <!-- 第三个下拉框(登陆状态) -->
+            <li class="light-blue">
+                <a data-toggle="dropdown" href="#" class="dropdown-toggle">
+                    <img class="nav-user-photo" src="../images/user.jpg" alt="Jason's Photo"/>
+                    <span class="user-info">
+								<small>欢迎,</small>
+								<span th:text="${session.USER_IN_SESSION !=null ? session.USER_IN_SESSION.user_name :'游客' }"></span>
+							</span>
+
+                    <i class="icon-caret-down"></i>
+                </a>
+
+                <ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+                    <li>
+                        <a href="#">
+                            <i class="icon-cog"></i>
+                            设置
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            <i class="icon-user"></i>
+                            个人资料
+                        </a>
+                    </li>
+
+                    <li class="divider"></li>
+
+                    <li>
+                        <a th:if="${session.USER_IN_SESSION != null }" th:href="@{/user/logout}">
+                            <i class="icon-off"></i>
+                            退出
+                        </a>
+                        <a th:if="${session.USER_IN_SESSION == null }" th:href="@{/login}">
+                            <i class="icon-leaf"></i>
+                            登陆
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+        </ul><!-- /.ace-nav -->
+    </div><!-- /.navbar-header -->
+</div><!-- /.container -->
+
+<!-- 左侧导航栏-->
+<div id="fh5co-page">
+    <aside id="fh5co-aside" role="complementary" class="js-fullheight">
+        <h1 id="fh5co-logo"><a href="index.html"><img src="../images/logo-colored.png"></a></h1>
+        <nav id="fh5co-main-menu" role="navigation">
+            <ul>
+                <li><a href="/index">首页</a></li>
+                <li><a href="#">相册</a></li>
+                <li class="fh5co-active"><a href="/photo">相册分类</a></li>
+                <li><a href="#">关于</a></li>
+            </ul>
+        </nav>
+        <!-- 右边底部 -->
+        <div class="fh5co-footer">
+            <p>
+                <small>&copy; 2017 Blend Free HTML5. All Rights Reserved.</span> More Templates <a href="#"
+                                                                                                   target="_blank"
+                                                                                                   title="首页">首页</a> -
+                    Collect from <a href="#" title="首页" target="_blank">首页</a></small>
+            </p>
+            <ul>
+                <li><a href="#"><i class="icon-facebook"></i></a></li>
+                <li><a href="#"><i class="icon-twitter"></i></a></li>
+                <li><a href="#"><i class="icon-instagram"></i></a></li>
+                <li><a href="#"><i class="icon-linkedin"></i></a></li>
+            </ul>
+        </div>
+    </aside>
+</div>
+
+<div id="fh5co-main">
+    <!-- 动画效果 data-animate-effect -->
+    <div class="fh5co-narrow-content animate-box" data-animate-effect="fadeInLeft">
+        <div class="row">
+            <div class="col-md-4">
+                <h1>新建相册</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-6">
+                        <span>相册名称</span><br>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="相册名称">
+                        </div>
+                        <span>相册封面</span><br>
+                        <div class="form-group" id="container">
+                            <input type="file" id="upLoadImg" class="btn">
+                            <input type="text" id="choseFileName">
+                            <span id="upLoadMsg"></span>
+                            <input type="hidden" id="coverImgUrl" readonly>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <span>相册描述</span><br>
+                    <textarea id="message" cols="30" rows="7" class="form-control" maxlength="150"
+                              placeholder="最大100个字符"></textarea>
+                </div>
+                <div class="form-group">
+                    <input type="button" id="addClassify" class="btn btn-primary btn-md" value="提交">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--&lt;!&ndash; 七牛上传 &ndash;&gt;-->
+<script src="../js/qiniu.js"></script>
+<script src="../js/moxie.js"></script>
+<script src="../js/plupload.dev.js"></script>
+
+<script src="../js/jquery.min.js"></script>
+<script src="../js/jquery.easing.1.3.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/owl.carousel.min.js"></script>
+<script src="../js/jquery.stellar.min.js"></script>
+<script src="../js/jquery.waypoints.min.js"></script>
+<script src="../js/jquery.countTo.js"></script>
+<script src="../js/main.js"></script>
+<script th:inline="javascript">
+
+$(function () {
+
+//    $("#addClassify").click(function () {
+//        uploader.start();
+//    });
+
+    /* 添加商品图片上传 */
+    var uploader = Qiniu.uploader({
+        runtimes: 'html5',    //上传模式,依次退化
+        browse_button: 'upLoadImg',       //上传选择的点选按钮，**必需**
+        uptoken: [[${classifyAddToken}]], //若未指定uptoken_url,则必须指定 uptoken ,uptoken由其他程序生成
+        domain: 'http://or3tpjd0x.bkt.clouddn.com/',   //bucket 域名，下载资源时用到，**必需**
+        container: 'container',           //上传区域DOM ID，默认是browser_button的父元素，
+        max_file_size: '20mb',           //最大文件体积限制
+        auto_start: true,                //选择文件后自动上传，若关闭需要自己绑定事件触发上传
+        init: {
+            'FilesAdded': function(up, files) {
+                plupload.each(files, function(file) {
+                    // 文件添加进队列后,处理相关的事情
+                    $("#choseFileName").val(file.name);
+                });
+            },
+            'FileUploaded': function (up,file,info) {
+                var domain = up.getOption('domain');
+                var res = window.JSON.parse(info);
+                var sourceLink = domain + res.key;
+                $("#upLoadMsg").html("图片上传成功！").css("color","green");
+                $("#coverImgUrl").val(sourceLink);
+            },
+            'Error': function (up, err, errTip) {
+                //上传出错时,处理相关的事情
+                $("#upLoadMsg").html("图片上传失败！").css("color","red");
+            },
+        }
+    });
+})
+
+
+</script>
+
+</body>
+</html>
+

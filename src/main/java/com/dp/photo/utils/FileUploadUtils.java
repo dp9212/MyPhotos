@@ -23,9 +23,9 @@ public class FileUploadUtils extends HttpServlet{
 
     public static final String SESSION_TOKEN = "tokenInSession";
 
-    public static final String ACCESS_KEY = "jFF4Tp5JL1p3J-HyaSDNHCyO9vwDR9RrSVqWiiVm";//这里填上面我们讲到的，密钥管理里面的密钥
+    public static final String ACCESS_KEY = "jFF4Tp5JL1p3J-HyaSDNHCyO9vwDR9RrSVqWiiVm";
     public static final String SECRET_KEY = "Y0-kTJ7Kq9_xQfJseLjvx2zJtzLUOdWWo-nJqJ1q";
-    public static final String BUCKET_NAME = "dp9212";//填我们在七牛云创建的 Bucket 名字
+    public static final String BUCKET_NAME = "dp9212";//在七牛云创建的 Bucket 名字
 
     /* 首页轮播上传 */
     public static final  String getWebUptoken() {
@@ -43,10 +43,11 @@ public class FileUploadUtils extends HttpServlet{
     }
 
     /* js上传Token生成 */
-    public static final  String getProductUpToken() {
+    public static final  String getClassifyAddToken() {
         String accessKey = FileUploadUtils.ACCESS_KEY;
         String secretKey = FileUploadUtils.SECRET_KEY;
-        String bucket = "zhihuiproduct";
+//        String bucket = "dp9212";
+        String bucket = FileUploadUtils.BUCKET_NAME;
         Auth auth = Auth.create(accessKey, secretKey);
         String upToken = auth.uploadToken(bucket,null,3600,null);
         return upToken;

@@ -4,6 +4,7 @@ import com.dp.photo.domain.Classify;
 import com.dp.photo.domain.Photo;
 import com.dp.photo.service.IClassifyService;
 import com.dp.photo.service.IPhotoService;
+import com.dp.photo.utils.FileUploadUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -29,7 +30,14 @@ public class PhotoController {
     public String main(ModelMap modelMap){
         List<Classify> classifyAll = classifyService.findAll();
         modelMap.put("classifyAll",classifyAll);
-        return "photoUpload";
+        return "photoClassify";
     }
 
+    @GetMapping("/addClassify")
+    public String addClassify(ModelMap modelMap){
+        String classifyAddToken = FileUploadUtils.getClassifyAddToken();
+        System.out.println(classifyAddToken);
+        modelMap.put("classifyAddToken",classifyAddToken);
+        return "photoClassify_add";
+    }
 }
