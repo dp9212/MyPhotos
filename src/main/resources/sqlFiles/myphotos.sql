@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50718
 File Encoding         : 65001
 
-Date: 2017-07-03 18:43:10
+Date: 2017-07-05 19:01:58
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -22,21 +22,23 @@ DROP TABLE IF EXISTS `t_classify`;
 CREATE TABLE `t_classify` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `classify_name` varchar(20) NOT NULL COMMENT '相册分类名称',
-  `classify_describe` varchar(50) DEFAULT NULL COMMENT '描述',
+  `classify_describe` varchar(150) DEFAULT NULL COMMENT '描述',
   `classify_coverImg` varchar(100) DEFAULT NULL,
   `classify_createTime` datetime DEFAULT NULL,
   `classify_updateTime` datetime DEFAULT NULL,
   `user_id` int(10) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_classify
 -- ----------------------------
-INSERT INTO `t_classify` VALUES ('1', '骑行', '这是一次活动', '', '2017-07-03 16:36:32', '2017-07-03 16:36:35', '1');
-INSERT INTO `t_classify` VALUES ('2', '郊游', '贴图图突突突图', null, '2017-07-03 18:01:09', '2017-07-03 18:01:11', '1');
-INSERT INTO `t_classify` VALUES ('3', '旅游', 'djaishdaiosd', null, '2017-07-03 18:01:49', '2017-07-03 18:01:51', '1');
-INSERT INTO `t_classify` VALUES ('4', '拍照', '照片照片照片', null, '2017-07-03 18:03:42', '2017-07-03 18:03:44', '1');
+INSERT INTO `t_classify` VALUES ('1', '骑行', '这是一次活动', 'http://or3tpjd0x.bkt.clouddn.com/1498706493214.jpg', '2017-07-03 16:36:32', '2017-07-03 16:36:35', '1');
+INSERT INTO `t_classify` VALUES ('2', '郊游', '贴图图突突突图', 'http://or3tpjd0x.bkt.clouddn.com/1498706507400.jpg', '2017-07-03 18:01:09', '2017-07-03 18:01:11', '1');
+INSERT INTO `t_classify` VALUES ('3', '旅游', 'djaishdaiosd', 'http://or3tpjd0x.bkt.clouddn.com/1498706493214.jpg', '2017-07-03 18:01:49', '2017-07-03 18:01:51', '1');
+INSERT INTO `t_classify` VALUES ('4', '拍照', '照片照片照片', 'http://or3tpjd0x.bkt.clouddn.com/1498706507400.jpg', '2017-07-03 18:03:42', '2017-07-03 18:03:44', '1');
+INSERT INTO `t_classify` VALUES ('5', '我自己的相册', '我自己的相册我自己的相册我自己的相册我自己的相册我自己的相册我自己的相册我自己的相册我自己的相册我自己的相册', 'http://or3tpjd0x.bkt.clouddn.com/1498706507400.jpg', '2017-07-05 18:49:03', null, '1');
+INSERT INTO `t_classify` VALUES ('7', '我的第二个相册', '我的第二个相册我的第二个相册我的第二个相册我的第二个相册我的第二个相册我的第二个相册我的第二个相册我的第二个相册我的第二个相册我的第二个相册我的第二个相册我的第二个相册我的第二个相册我的第二个相册我的第二个相册我的第二个相册我的第二个相册我的第二个相册我的第二个相册我的第二个相册我的第二个相册我的第', 'http://or3tpjd0x.bkt.clouddn.com/1498706507400.jpg', '2017-07-05 18:53:23', null, '1');
 
 -- ----------------------------
 -- Table structure for t_photo
