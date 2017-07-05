@@ -71,6 +71,36 @@
 			margin-left: 25px;
 			text-decoration:none;/* 去下划线 */
 		}
+		#editClassify{
+			/*float: left;*/
+			bottom: 0px;
+			height: 30px;
+			width: 60px;
+		}
+		#deleteClassify{
+			/*float: left;*/
+			bottom: 0px;
+			height: 30px;
+			width: 60px;
+		}
+		.icon-edit{
+			float: left;
+			margin-top: -4px;
+		}
+		.icon-trash{
+			float: left;
+			margin-top: -4px;
+		}
+		.col-md-4{
+			margin-bottom: 30px;
+			/*border:1px solid #F00;*/
+			/*margin-left: 1px;*/
+
+		}
+		.modal-content span{
+			font-size: large;
+			font-family: 华文行楷;
+		}
 	</style>
 </head>
 <body>
@@ -292,13 +322,14 @@
 	<div id="fh5co-main">
 		<div class="fh5co-narrow-content  animate-box fh5co-border-bottom" data-animate-effect="fadeInLeft">
 			<span class="head-font" >个人相册</span>
-			<a id="addClassifyOne" th:href="@{/photo/addClassify}" >新增</a>
+			<!--<a id="addClassifyOne" th:href="@{/photo/addClassifyView}" >新增</a>-->
+			<a id="addClassifyOne"  href="javascript:void(0);" onclick="checkLogin()" >新增</a>
 			<br><br>
 
 			<div class="row">
 				<!-- 循环DIV -->
 				<div class="col-md-4 fh5co-staff" th:each="classify : ${classifyAll}" th:id="${classify.id}">
-					<img src="../image/person2.jpg"  class="img-responsive">
+					<img th:src="${classify.classify_coverImg}"  class="img-responsive">
 					<h3 th:text="${classify.classify_name}"></h3>
 					<h4 th:text="${classify.classify_createTime}"></h4>
 					<!-- 文本域 -->
@@ -307,11 +338,11 @@
 						<li>
 							<!-- 修改按钮 -->
 							<button type="button" id="editClassify" class="btn btn-xs btn-info">
-								<i class="icon-edit bigger-120"></i>
+								<i class="icon-edit bigger-80"></i>
 							</button>
 							<!-- 删除按钮 -->
 							<button type="button" id="deleteClassify" class="btn btn-xs btn-danger">
-								<i class="icon-trash bigger-120"></i>
+								<i class="icon-trash bigger-80"></i>
 							</button>
 						</li>
 					</ul>
@@ -322,6 +353,33 @@
 		</div>
 	</div>
 
+	<!-- 登陆模态框 -->
+	<div class="modal fade" id="loginModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog" style="width: 300px">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">Sorry,请登陆</h4>
+				</div>
+
+				<div class="modal-body">
+					<span>用户名</span><br>
+					<input type="text" id="userName" ><br>
+					<span>密码</span><br>
+					<input type="password" id="userPassword" ><br>
+					<span id="loginMsg" style="color: red"></span>
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+					<button type="button" id="userLogin" class="btn btn-primary">登陆</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+
 	<script src="../js/jquery.min.js"></script>
 	<script src="../js/jquery.easing.1.3.js"></script>
 	<script src="../js/bootstrap.min.js"></script>
@@ -330,7 +388,46 @@
 	<script src="../js/jquery.waypoints.min.js"></script>
 	<script src="../js/jquery.countTo.js"></script>
 	<script src="../js/main.js"></script>
+	<script th:inline="javascript">
+        function checkLogin() {
+            var userId = [[ ${session.USER_IN_SESSION != null ? session.USER_IN_SESSION.id : null } ]];
+            if(userId != null && userId != ""){
+                location.href="/photo/addClassifyView";
+            }else {
+                /* 模态框居中显示 */
+                var $modal = $('#loginModel');
+                $modal.on('show.bs.modal', function(){
+                    var $this = $(this);
+                    var $modal_dialog = $this.find('.modal-dialog');
+                    // 关键代码，如没将modal设置为 block，则$modala_dialog.height() 为零
+                    $this.css('display', 'block');
+                    $modal_dialog.css({'margin-top': Math.max(0, ($(window).height() - $modal_dialog.height()) / 2) });
+                });
+                $modal.modal({backdrop: 'static'});
+            }
+        }
 
+        $("#userLogin").click(function () {
+			var userName = $("#userName").val();
+			var userPwd = $("#userPassword").val();
+			var _data = {}
+				_data.user_name = userName;
+				_data.user_password = userPwd;
+            $.ajax({
+                url:'/user/checkLogin',
+                type:'post',
+                data:JSON.stringify(_data),
+                contentType:'application/json',
+                success:function (data) {
+                    if(data.success){
+                        location.href="/photo";
+                    }else {
+						$("#loginMsg").html("用户名或密码错误!");
+                    }
+                }
+            });
+        });
+	</script>
 </body>
 </html>
 

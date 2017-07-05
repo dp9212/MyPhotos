@@ -8,13 +8,12 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-
 import javax.sql.DataSource;
 
 @SpringBootApplication
 @Configuration
 @EnableTransactionManagement
-@ServletComponentScan
+@ServletComponentScan /* 可以不写？ */
 public class ViewApplication {
 
 	/*配置这个bean后，druid后台才能监控到sql语句 加上@Configuration */
