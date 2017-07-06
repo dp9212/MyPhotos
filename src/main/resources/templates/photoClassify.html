@@ -62,6 +62,23 @@
 		textarea:focus{
 			background-color: #E4E6E9;
 		}
+		/* DIV模拟文本域 */
+		#classifyDescribe{
+			/*padding: 3px;*/
+			/*border: 1px solid #a0b3d6;*/
+			font-family: 华文新魏;
+			min-height: 100px;
+			max-height: 100px;
+			_height: 100px;
+			margin-left: auto;
+			margin-right: auto;
+			outline: 0;
+			font-size: 16px;
+			word-wrap: break-word;
+			overflow-x: hidden;
+			overflow-y: auto;
+			-webkit-user-modify: read-write-plaintext-only;
+		}
 		.head-font{
 			font-family: 华文行楷;
 			color: #0f0f0f;
@@ -330,10 +347,17 @@
 				<!-- 循环DIV -->
 				<div class="col-md-4 fh5co-staff" th:each="classify : ${classifyAll}" th:id="${classify.id}">
 					<img th:src="${classify.classify_coverImg}"  class="img-responsive">
+					<!--<img src="../image/person2.jpg" class="img-responsive" />-->
 					<h3 th:text="${classify.classify_name}"></h3>
 					<h4 th:text="${classify.classify_createTime}"></h4>
-					<!-- 文本域 -->
-					<textarea rows="5" cols="47" th:text="${classify.classify_describe}" readonly></textarea>
+					<!-- 文本域 存在适应问题 -->
+					<!--<textarea rows="5" cols="44" th:text="${classify.classify_describe}" readonly></textarea>-->
+
+					<!-- DIV模拟文本域 -->
+					<div contenteditable="true" id="classifyDescribe" readonly="readonly">
+						<span th:text="${classify.classify_describe}" readonly="readonly"></span>
+					</div><br>
+
 					<ul class="fh5co-social">
 						<li>
 							<!-- 修改按钮 -->

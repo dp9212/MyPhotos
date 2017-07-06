@@ -25,13 +25,12 @@ public class UserController {
     /* 登陆 */
     @PostMapping("/checkLogin")
     @ResponseBody
-    public JsonResult login(@RequestBody User user, ModelMap modelMap, HttpSession session){
+    public JsonResult login(@RequestBody User user,HttpSession session){
         JsonResult json = new JsonResult();
         String user_name = user.getUser_name();
         String user_password = user.getUser_password();
         User login = userService.login(user_name, user_password);
         if(null != login){
-//            modelMap.put(UserContext.USER_IN_SESSION,login);
             session.setAttribute("USER_IN_SESSION",login);
             json.setSuccess(true).setMsg("登陆成功!");
         }else {
