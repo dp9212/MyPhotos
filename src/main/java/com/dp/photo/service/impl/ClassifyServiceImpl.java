@@ -7,6 +7,8 @@ import com.dp.photo.service.IClassifyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by dp9212 on 2017/6/28.
  */
@@ -18,5 +20,10 @@ public class ClassifyServiceImpl extends BaseServiceImpl<Classify> implements IC
     @Override
     protected BaseMapper<Classify> baseMapper() {
         return classifyMapper;
+    }
+
+    @Override
+    public List<Classify> findClassifyByIndex() {
+        return classifyMapper.findClassifyByIndex();
     }
 }

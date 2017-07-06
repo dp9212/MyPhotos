@@ -20,6 +20,7 @@ public class Classify {
     private String classify_coverImg;
     private Date classify_createTime;
     private Date classify_updateTime;
+    private Integer classify_status; /* 状态 0正常 1假删除 */
     private Integer user_id;
 
 }

@@ -78,6 +78,7 @@
 			overflow-x: hidden;
 			overflow-y: auto;
 			-webkit-user-modify: read-write-plaintext-only;
+			/*overflow-y:hidden;*/  /* 隐藏DIV纵向滚动条 */
 		}
 		.head-font{
 			font-family: 华文行楷;
@@ -318,7 +319,9 @@
 				<ul>
 					<li><a href="/index">首页</a></li>
 					<li><a href="#">相册</a></li>
-					<li class="fh5co-active"><a href="/photo">相册分类</a></li>
+					<li class="fh5co-active">
+						<a id="classifyByUserId"  href="javascript:checkLoginByClassify();" >相册分类</a>
+					</li>
 					<li><a href="#">关于</a></li>
 				</ul>
 			</nav>
@@ -354,18 +357,18 @@
 					<!--<textarea rows="5" cols="44" th:text="${classify.classify_describe}" readonly></textarea>-->
 
 					<!-- DIV模拟文本域 -->
-					<div contenteditable="true" id="classifyDescribe" readonly="readonly">
-						<span th:text="${classify.classify_describe}" readonly="readonly"></span>
+					<div contenteditable="true" id="classifyDescribe" >
+						<span th:text="${classify.classify_describe}" ></span>
 					</div><br>
 
 					<ul class="fh5co-social">
 						<li>
 							<!-- 修改按钮 -->
-							<button type="button" id="editClassify" class="btn btn-xs btn-info">
+							<button type="button" id="editClassify" class="btn btn-xs btn-info" th:id="${classify.id}" onclick="editClassify(this)">
 								<i class="icon-edit bigger-80"></i>
 							</button>
 							<!-- 删除按钮 -->
-							<button type="button" id="deleteClassify" class="btn btn-xs btn-danger">
+							<button type="button" id="deleteClassify" class="btn btn-xs btn-danger" th:id="${classify.id}" onclick="deleteClassify(this)">
 								<i class="icon-trash bigger-80"></i>
 							</button>
 						</li>
@@ -412,7 +415,27 @@
 	<script src="../js/jquery.waypoints.min.js"></script>
 	<script src="../js/jquery.countTo.js"></script>
 	<script src="../js/main.js"></script>
+
 	<script th:inline="javascript">
+		/* 函数名显示灰色为idea检查问题，功能正常 */
+		function checkLoginByClassify() {
+            var userId = [[ ${session.USER_IN_SESSION != null ? session.USER_IN_SESSION.id : null } ]];
+            if(userId != null && userId != ""){
+                location.href="/photo";
+            }else {
+				/* 模态框居中显示 */
+                var $modal = $('#loginModel');
+                $modal.on('show.bs.modal', function(){
+                    var $this = $(this);
+                    var $modal_dialog = $this.find('.modal-dialog');
+                    // 关键代码，如没将modal设置为 block，则$modala_dialog.height() 为零
+                    $this.css('display', 'block');
+                    $modal_dialog.css({'margin-top': Math.max(0, ($(window).height() - $modal_dialog.height()) / 2) });
+                });
+                $modal.modal({backdrop: 'static'});
+            }
+        }
+		
         function checkLogin() {
             var userId = [[ ${session.USER_IN_SESSION != null ? session.USER_IN_SESSION.id : null } ]];
             if(userId != null && userId != ""){
@@ -451,6 +474,28 @@
                 }
             });
         });
+
+		function editClassify(obj) {
+			
+        }
+
+		/* 删除相册 */
+        function deleteClassify(obj) {
+			var id = $(obj).attr("id");
+			$.ajax({
+				url:'/photo/deleteClassify/'+id,
+				type:'get',
+				success:function (data) {
+					if(data.success){
+					    alert(data.msg);
+                        window.location.reload();
+					}else {
+					    alert(data.msg);
+					}
+                }
+			})
+//            $(location).prop('href', '/photo/deleteClassify/'+id);
+        }
 	</script>
 </body>
 </html>

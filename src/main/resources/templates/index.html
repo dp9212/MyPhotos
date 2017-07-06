@@ -42,9 +42,9 @@
     .navbar{
         background-color: #E6E6E6;
         width: 100%;
-        height: 32px;
+        /*height: 32px;*/
         position:fixed;
-        /*margin-top: -32px;*/
+        margin-top: 0px;
         z-index:999; /* 让DIV显示最上层，数值越大，越在上 */
     }
     .user-info{
@@ -249,7 +249,8 @@
 
 
     <!-- 主体 -->
-    <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
+    <!--<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i>12312321</i></a>-->
+
     <!-- 左边导航栏 -->
     <aside id="fh5co-aside" role="complementary" class="border js-fullheight">
 
@@ -258,7 +259,9 @@
             <ul>
                 <li class="fh5co-active"><a href="/index">首页</a></li>
                 <li><a href="#">相册</a></li>
-                <li><a href="/photo">相册分类</a></li>
+                <li>
+                    <a id="classifyByUserId"  href="javascript:void(0);" onclick="checkLoginByIndex()" >相册分类</a>
+                </li>
                 <li><a href="#">关于</a></li>
             </ul>
         </nav>
@@ -277,35 +280,13 @@
     </aside>
 
     <!-- 右侧顶部图片 需要循环分类 -->
-    <div id="fh5co-main">
-        <div class="fh5co-gallery">
-
-            <a class="gallery-item" href="#">
-                <img src="../image/work_1.jpg" alt="1">
+    <div id="fh5co-main" style="margin-top:45px">
+        <div class="fh5co-gallery" >
+            <a class="gallery-item" href="#" th:each="classify : ${classifyAll}" th:id="${classify.id}">
+                <img th:src="${classify.classify_coverImg}" alt="1">
                 <span class="overlay">
-						<h2>Nature</h2>
+						<h2 th:text="${classify.classify_name}"></h2>
 						<span>14 Photos</span>
-					</span>
-            </a>
-            <a class="gallery-item" href="#">
-                <img src="../image/work_2.jpg" alt="2">
-                <span class="overlay">
-						<h2>People</h2>
-						<span>7 Photos</span>
-					</span>
-            </a>
-            <a class="gallery-item" href="#">
-                <img src="../image/work_3.jpg" alt="3">
-                <span class="overlay">
-						<h2>Sky</h2>
-						<span>22 Photos</span>
-					</span>
-            </a>
-            <a class="gallery-item" href="#">
-                <img src="../image/work_4.jpg" alt="4">
-                <span class="overlay">
-						<h2>Building</h2>
-						<span>28 Photos</span>
 					</span>
             </a>
 
@@ -442,6 +423,34 @@
     </div>
 </div>
 
+
+<!-- 登陆模态框 -->
+<div class="modal fade" id="loginModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width: 300px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Sorry,请登陆</h4>
+            </div>
+
+            <div class="modal-body">
+                <span>用户名</span><br>
+                <input type="text" id="userName" ><br>
+                <span>密码</span><br>
+                <input type="password" id="userPassword" ><br>
+                <span id="loginMsg" style="color: red"></span>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" id="userLogin" class="btn btn-primary">登陆</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
 <!-- jQuery -->
 <script src="../js/jquery.min.js"></script>
 <!-- jQuery Easing -->
@@ -458,6 +467,47 @@
 <script src="../js/jquery.countTo.js"></script>
 <!-- MAIN JS -->
 <script src="../js/main.js"></script>
+
+<script th:inline="javascript">
+    function checkLoginByIndex() {
+        var userId = [[ ${session.USER_IN_SESSION != null ? session.USER_IN_SESSION.id : null } ]];
+        if(userId != null && userId != ""){
+            location.href="/photo";
+        }else {
+            /* 模态框居中显示 */
+            var $modal = $('#loginModel');
+            $modal.on('show.bs.modal', function(){
+                var $this = $(this);
+                var $modal_dialog = $this.find('.modal-dialog');
+                // 关键代码，如没将modal设置为 block，则$modala_dialog.height() 为零
+                $this.css('display', 'block');
+                $modal_dialog.css({'margin-top': Math.max(0, ($(window).height() - $modal_dialog.height()) / 2) });
+            });
+            $modal.modal({backdrop: 'static'});
+        }
+    }
+
+    $("#userLogin").click(function () {
+        var userName = $("#userName").val();
+        var userPwd = $("#userPassword").val();
+        var _data = {}
+        _data.user_name = userName;
+        _data.user_password = userPwd;
+        $.ajax({
+            url:'/user/checkLogin',
+            type:'post',
+            data:JSON.stringify(_data),
+            contentType:'application/json',
+            success:function (data) {
+                if(data.success){
+                    location.href="/photo";
+                }else {
+                    $("#loginMsg").html("用户名或密码错误!");
+                }
+            }
+        });
+    });
+</script>
 
 </body>
 </html>

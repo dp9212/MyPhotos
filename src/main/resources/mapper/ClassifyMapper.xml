@@ -11,32 +11,38 @@
         <result column="classify_coverImg" property="classify_coverImg" />
         <result column="classify_createTime" property="classify_createTime" />
         <result column="classify_updateTime" property="classify_updateTime"/>
+        <result column="classify_status" property="classify_status" />
         <result column="user_id" property="user_id" />
     </resultMap>
 
     <select id="findAll" resultMap="classifyMap">
-        select * from t_classify;
+        select * from t_classify WHERE classify_status = 0;
     </select>
 
-    <select id="findOne" parameterType="int" resultMap="classifyMap" >
-        SELECT * FROM t_classify WHERE id=#{id};
+    <select id="findOneById" parameterType="int" resultMap="classifyMap" >
+        SELECT * FROM t_classify WHERE id=#{id} AND classify_status = 0;
     </select>
 
+    <!-- 假删除 -->
     <delete id="delete" parameterType="int" >
-        DELETE FROM t_classify WHERE id=#{id};
+        UPDATE t_classify SET classify_status=1 WHERE id=#{id};
     </delete>
 
     <insert id="save" parameterType="classify" useGeneratedKeys="true" keyProperty="id" >
-        INSERT INTO t_classify (classify_name,classify_describe,classify_coverImg,classify_createTime,classify_updateTime,user_id)
+        INSERT INTO t_classify (classify_name,classify_describe,classify_coverImg,classify_createTime,classify_updateTime,classify_status,user_id)
         VALUES
-        (#{classify_name},#{classify_describe},#{classify_coverImg},#{classify_createTime},#{classify_updateTime},#{user_id});
+        (#{classify_name},#{classify_describe},#{classify_coverImg},#{classify_createTime},#{classify_updateTime},#{classify_status},#{user_id});
     </insert>
 
     <update id="update" parameterType="classify" >
         update t_classify SET
           classify_name=#{classify_name},classify_describe=#{classify_describe},classify_coverImg=#{classify_coverImg},
-          classify_createTime=#{classify_createTime},classify_updateTime=#{classify_updateTime},user_id=#{user_id}
+          classify_createTime=#{classify_createTime},classify_updateTime=#{classify_updateTime},classify_status=#{classify_status},user_id=#{user_id}
         WHERE id=#{id};
     </update>
+    
+    <select id="findClassifyByIndex" resultMap="classifyMap" >
+        SELECT * FROM t_classify WHERE user_id= 0 limit 0,4;
+    </select>
 
 </mapper>
