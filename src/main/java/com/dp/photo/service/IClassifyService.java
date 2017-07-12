@@ -10,4 +10,5 @@ import java.util.List;
 public interface IClassifyService extends IBaseService<Classify> {
     /* 首页相册展示 */
     List<Classify> findClassifyByIndex();
+
 }
