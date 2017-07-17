@@ -1,6 +1,7 @@
 package com.dp.photo;
 
 import com.alibaba.druid.pool.DruidDataSource;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -13,7 +14,8 @@ import javax.sql.DataSource;
 @SpringBootApplication
 @Configuration
 @EnableTransactionManagement
-@ServletComponentScan /* 可以不写？ */
+@ServletComponentScan
+@MapperScan("com.dp.photo.mapper") /* mapper扫描，mapper层不用打@Mapper */
 public class ViewApplication {
 
 	/*配置这个bean后，druid后台才能监控到sql语句 加上@Configuration */
@@ -23,6 +25,7 @@ public class ViewApplication {
 		DruidDataSource druidDataSource = new DruidDataSource();
 		return druidDataSource;
 	}
+
 	public static void main(String[] args) {
 		SpringApplication.run(ViewApplication.class, args);
 	}

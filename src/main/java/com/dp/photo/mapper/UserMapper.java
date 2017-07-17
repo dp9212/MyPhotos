@@ -7,9 +7,7 @@ import org.springframework.stereotype.Repository;
 /**
  * Created by dp9212 on 2017/6/28.
  */
-
 @Repository
-@Mapper
 public interface UserMapper extends BaseMapper<User> {
     /* 根据用户查找 */
 
