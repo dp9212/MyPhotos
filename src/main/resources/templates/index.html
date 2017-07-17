@@ -286,7 +286,7 @@
                 <img th:src="${classify.classify_coverImg}" alt="1">
                 <span class="overlay">
 						<h2 th:text="${classify.classify_name}"></h2>
-						<span>14 Photos</span>
+						<span id="classifyTotal" th:id="${classify.id}">14 Photos</span>
 					</span>
             </a>
 
@@ -469,6 +469,10 @@
 <script src="../js/main.js"></script>
 
 <script th:inline="javascript">
+    $(function () {
+//        $("#classifyTotal").
+    });
+
     function checkLoginByIndex() {
         var userId = [[ ${session.USER_IN_SESSION != null ? session.USER_IN_SESSION.id : null } ]];
         if(userId != null && userId != ""){

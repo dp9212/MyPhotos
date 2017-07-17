@@ -9,6 +9,7 @@ import com.dp.photo.utils.FileUploadUtils;
 import com.dp.photo.utils.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
@@ -45,7 +46,7 @@ public class PhotoController {
     }
 
     /* 保存相册 */
-    @PostMapping("/addClassify")
+    @RequestMapping("/addClassify")
     @ResponseBody
     public JsonResult saveClassify(@RequestBody Classify classify,HttpSession session){
         JsonResult json = new JsonResult();
@@ -56,6 +57,7 @@ public class PhotoController {
         classify.setClassify_createTime(new Date());
         classify.setUser_id(user.getId());
         classifyService.save(classify);
+        json.setSuccess(true).setMsg("成功");
         return json;
     }
 
